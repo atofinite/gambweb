@@ -28,7 +28,7 @@ interface GameContextType {
   setResult: (result: any) => void;
   setGameMessage: (message: string) => void;
   setBalance: (balance: number) => void;
-  startGame: (bet: number, startMessage: string, soundType: 'flip' | 'dice' | 'card' | 'romantic' | 'mind') => boolean;
+  startGame: (bet: number, startMessage: string, soundType: 'flip' | 'dice' | 'card' | 'romantic' | 'mind' | 'roulette' | 'blackjack' | 'slots' | 'poker') => boolean;
   resolveBet: (isWin: boolean, bet: number, messages: { win: string; lose: string }) => void;
   endGame: (delay: number) => void;
   handleRestart: () => void;
@@ -83,7 +83,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }, [balance, stats, user, getStorageKey]);
   
-  const playSound = useCallback((soundType: 'flip' | 'win' | 'lose' | 'click' | 'dice' | 'card' | 'romantic' | 'mind') => {
+  const playSound = useCallback((soundType: 'flip' | 'win' | 'lose' | 'click' | 'dice' | 'card' | 'romantic' | 'mind' | 'roulette' | 'blackjack' | 'slots' | 'poker') => {
     if (!isSoundOn) return;
     if (!audioContextRef.current) {
       try {
@@ -106,6 +106,10 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       case 'card': sound.playCardSound(ctx); break;
       case 'romantic': sound.playCardSound(ctx); break; // Reuse card sound for romantic
       case 'mind': sound.playDiceSound(ctx); break; // Reuse dice sound for mind
+      case 'roulette': sound.playDiceSound(ctx); break; // Reuse dice sound for roulette
+      case 'blackjack': sound.playCardSound(ctx); break; // Reuse card sound for blackjack
+      case 'slots': sound.playClickSound(ctx); break; // Reuse click sound for slots
+      case 'poker': sound.playCardSound(ctx); break; // Reuse card sound for poker
     }
   }, [isSoundOn]);
 
@@ -116,7 +120,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }, [balance, isGameInProgress]);
 
-  const startGame = useCallback((numericBetAmount: number, startMessage: string, soundType: 'flip' | 'dice' | 'card'): boolean => {
+  const startGame = useCallback((numericBetAmount: number, startMessage: string, soundType: 'flip' | 'dice' | 'card' | 'romantic' | 'mind' | 'roulette' | 'blackjack' | 'slots' | 'poker'): boolean => {
     if (isNaN(numericBetAmount) || numericBetAmount <= 0) {
       setGameMessage('Please enter a valid bet amount.');
       return false;

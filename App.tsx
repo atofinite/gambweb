@@ -12,6 +12,10 @@ import DiceRollGame from './components/games/DiceRollGame';
 import NebulaNumbersGame from './components/games/NebulaNumbersGame';
 import RomanticGame from './components/games/RomanticGame';
 import MindGame from './components/games/MindGame';
+import RouletteGame from './components/games/RouletteGame';
+import BlackjackGame from './components/games/BlackjackGame';
+import SlotsGame from './components/games/SlotsGame';
+import PokerGame from './components/games/PokerGame';
 import { DiceIcon } from './components/icons/DiceIcon';
 import { CardsIcon } from './components/icons/CardsIcon';
 import ChatBot from './components/ChatBot';
@@ -58,7 +62,7 @@ const LeaderboardSection: React.FC = () => {
 }
 
 const GameHub: React.FC = () => {
-    const [activeGame, setActiveGame] = useState<'coin' | 'dice' | 'numbers' | 'romantic' | 'mind'>('coin');
+    const [activeGame, setActiveGame] = useState<'coin' | 'dice' | 'numbers' | 'romantic' | 'mind' | 'roulette' | 'blackjack' | 'slots' | 'poker'>('coin');
     const { isGameOver, handleRestart } = useGame();
 
     const games = [
@@ -67,6 +71,10 @@ const GameHub: React.FC = () => {
         { id: 'numbers', name: 'Nebula Numbers', icon: <CardsIcon className="w-6 h-6" /> },
         { id: 'romantic', name: 'Romantic Hearts', icon: <span className="text-red-500">❤️</span> },
         { id: 'mind', name: 'Mind Bender', icon: <span className="text-purple-500">🧠</span> },
+        { id: 'roulette', name: 'Roulette', icon: <span className="text-green-500">🎰</span> },
+        { id: 'blackjack', name: 'Blackjack', icon: <CardsIcon className="w-6 h-6" /> },
+        { id: 'slots', name: 'Slots', icon: <span className="text-yellow-500">🎰</span> },
+        { id: 'poker', name: 'Poker', icon: <CardsIcon className="w-6 h-6" /> },
     ];
 
     const renderGame = () => {
@@ -76,6 +84,10 @@ const GameHub: React.FC = () => {
             case 'numbers': return <NebulaNumbersGame />;
             case 'romantic': return <RomanticGame />;
             case 'mind': return <MindGame />;
+            case 'roulette': return <RouletteGame />;
+            case 'blackjack': return <BlackjackGame />;
+            case 'slots': return <SlotsGame />;
+            case 'poker': return <PokerGame />;
             default: return <CoinFlipGame />;
         }
     };
