@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gambweb</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0"
+  }
+}
+</script>
+  <style>
+    body {
+      background-color: #100f15;
+      font-family: 'Poppins', sans-serif;
+      color: #e2e8f0;
+    }
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .scroll-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .text-gold {
+      color: #FFD700;
+    }
+    .bg-gold-gradient {
+      background-image: linear-gradient(to right, #fde047, #eab308);
+    }
+    .border-gold {
+        border-color: #FFD700;
+    }
+    .shadow-gold {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+    .focus\:ring-gold:focus {
+      --tw-ring-color: #FFD700;
+    }
+    .focus\:border-gold:focus {
+      --tw-border-opacity: 1;
+      border-color: #FFD700;
+    }
+  </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
